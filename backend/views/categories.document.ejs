@@ -1,0 +1,149 @@
+<h1>Documentación Módulo categorias
+
+</h1>
+<hr>
+<h3>Requerimiento 1 Documentación Del ENDPOINT categorias
+
+</h3>
+<hr>
+<table>
+    <tr>
+        <td>NUMERO</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>NOMBRE DEL SERVICIO</td>
+        <td>Mostrar categorias
+
+        </td>
+    </tr>
+    <tr>
+        <td>URL</td>
+        <td>/categories
+
+        </td>
+    </tr>
+    <tr>
+        <td>DESCRIPCIÓN</td>
+        <td>Permite listar todos las categorias
+             de la base de datos</td>
+    </tr>
+    <tr>
+        <td>VERBO HTTP</td>
+        <td>GET</td>
+    </tr>
+    <tr>
+        <td>HEADER</td>
+        <td>token: "token"</td>
+    </tr>
+    <tr>
+        <td>PETICIÓN body</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>RESPUESTA JSON</td>
+        <td>
+            Correcto:
+            Status: 200
+            JSON[
+            {
+              "id": 1,
+              "name": "Dogs"
+            },
+            {
+              "id": 2,
+              "name": "Cats"
+            },
+            {
+              "id": 3,
+              "name": "prueba"
+            }
+          ] <br>
+
+            Incorrecto:
+            Status: 404
+            JSON{
+                "Mensaje": "No Se Encontro ninguna categoria"
+            } <br>
+
+            Error:
+            Status: 500
+            JSON{
+                "Mensaje": "error"
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>Autor</td>
+        <td>Estefania Chilito Zuñiga</td>
+    </tr>
+</table>
+<hr>
+<h3>Requerimiento 2 Documentación Del ENDPOINT categorias
+
+</h3>
+<hr>
+<table>
+    <tr>
+        <td>NUMERO</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>NOMBRE DEL SERVICIO</td>
+        <td>Crear una categoria</td>
+    </tr>
+    <tr>
+        <td>URL</td>
+        <td>/categories
+
+        </td>
+    </tr>
+    <tr>
+        <td>DESCRIPCIÓN</td>
+        <td>Permite crear una categoria con la información para su exposición</td>
+    </tr>
+    <tr>
+        <td>VERBO HTTP</td>
+        <td>POST</td>
+    </tr>
+    <tr>
+        <td>HEADER</td>
+        <td>token: "token"</td>
+    </tr>
+    <tr>
+        <td>PETICIÓN body</td>
+        <td>
+            JSON:{ 
+
+                "name": "prueba"
+                
+              }
+        </td>
+    </tr>
+    <tr>
+        <td>RESPUESTA JSON</td>
+        <td>
+            Correcto:
+            Status: 200
+            JSON{
+                "message": "categoria creada con éxito"
+              } <br>
+
+            Incorrecto:
+            Status: 404
+            JSON{
+                "Mensaje": "No Se Pudo Crear la categoria"
+            } <br>
+
+            Error:
+            Status: 500
+            JSON{
+                "Mensaje": "error"
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>Autor</td>
+        <td>Estefania Chilito Zuñiga</td>
+    </tr>
+</table>

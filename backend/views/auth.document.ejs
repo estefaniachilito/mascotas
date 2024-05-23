@@ -1,0 +1,76 @@
+<h1>Documentación Módulo Autenticación</h1>
+<hr>
+<h3>Requerimiento 1 Documentación Del ENDPOINT AUTENTICACION</h3>
+<hr>
+<table>
+    <tr>
+        <td>NUMERO</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>NOMBRE DEL SERVICIO</td>
+        <td>Iniciar Sesión</td>
+    </tr>
+    <tr>
+        <td>URL</td>
+        <td>/login</td>
+    </tr>
+    <tr>
+        <td>DESCRIPCIÓN</td>
+        <td>Iniciar sesión para recibir el token de Autenticación</td>
+    </tr>
+    <tr>
+        <td>VERBO HTTP</td>
+        <td>POST</td>
+    </tr>
+    <tr>
+        <td>HEADER</td>
+        <td>null</td>
+    </tr>
+    <tr>
+        <td>USUARIOS</td>
+        <td>Todos</td>
+    </tr>
+    <tr>
+        <td>PETICIÓN body</td>
+        <td>
+            JSON{ 
+
+                "email": "estefania@gmail.com",
+                "password": "123456"
+                
+              }
+        </td>
+    </tr>
+    <tr>
+        <td>RESPUESTA JSON</td>
+        <td>
+            Correcto:
+            Status: 200
+            JSON{
+                "resultado": [
+                  {
+                    "id": 1,
+                    "fullname": "Estefania Chilito",
+                    "email": "estefania@gmail.com",
+                    "password": "123456"
+                  }
+                ],
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHRhZG8iOlt7ImlkIjoxLCJmdWxsbmFtZSI6IkVzdGVmYW5pYSBDaGlsaXRvIiwiZW1haWwiOiJlc3RlZmFuaWFAZ21haWwuY29tIiwicGFzc3dvcmQiOiIxMjM0NTYifV0sImlhdCI6MTcxNjQzNTI2MSwiZXhwIjoxNzE2NTIxNjYxfQ.rSMKUFvACDKXp-AJnrt3Xj59-48TtDFPJTKv9fPTnOM"
+              } <br>
+
+            Incorrecto:
+            Status: 404
+            JSON{
+                "mensaje": "Usuario no encontrado"
+            } <br>
+
+            Error:
+            Status: 500
+            JSON{
+                "mensaje": "error"
+            }
+        </td>
+    </tr>
+</table>
+<hr></hr>
