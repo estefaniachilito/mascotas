@@ -44,7 +44,7 @@ export const setPets = async (req, res) => {
         const [result] = await pool.query('INSERT INTO pets (pet_name, race_id, category_id, photo, gender_id, user_id) values (?, ?, ?, ?, ?, ?)', [pet_name, race_id, category_id, photo || null, gender_id, user_id || null]);
 
         if (result.affectedRows > 0) {
-            return res.status(201).json({ message: 'mascota creado con éxito' });
+            return res.status(201).json({ message: 'mascota creada con éxito' });
         }
         return res.status(400).json({ message: 'No se pudo crear la mascota' });
     } catch (error) {

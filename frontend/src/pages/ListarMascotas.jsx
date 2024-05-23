@@ -45,7 +45,7 @@ const TraerMascotas = () => {
                 <div className='w-full flex justify-center items-center'>
                     <Link to="/create"><img src="/btn-add.svg" alt="" /></Link>
                 </div>
-                <div className='px-4 py-4 h-full overflow-y-scroll'>
+                <div className='px-4 py-4 h-[75%] overflow-auto'>
                     {mascotas.length > 0 ? (
                         <ul className='space-y-4'>
                             {mascotas.map((mascota, index) => (

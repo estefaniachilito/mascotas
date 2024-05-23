@@ -1,8 +1,8 @@
-<h1>Documentación Módulo generos
+<h1>Documentación Módulo Razas
 
 </h1>
 <hr>
-<h3>Requerimiento 1 Documentación Del ENDPOINT generos
+<h3>Requerimiento 1 Documentación Del ENDPOINT razas
 
 </h3>
 <hr>
@@ -13,19 +13,19 @@
     </tr>
     <tr>
         <td>NOMBRE DEL SERVICIO</td>
-        <td>Mostrar generos
+        <td>Mostrar razas
 
         </td>
     </tr>
     <tr>
         <td>URL</td>
-        <td>/genders
+        <td>/races
 
         </td>
     </tr>
     <tr>
         <td>DESCRIPCIÓN</td>
-        <td>Permite listar todos los generos
+        <td>Permite listar todas los razas
              de la base de datos</td>
     </tr>
     <tr>
@@ -48,18 +48,30 @@
             JSON[
             {
               "id": 1,
-              "name": "Hembra"
+              "name": "Pitbull"
             },
             {
               "id": 2,
-              "name": "Macho"
+              "name": "Bulldog"
+            },
+            {
+              "id": 3,
+              "name": "Corgi"
+            },
+            {
+              "id": 4,
+              "name": "Siamese"
+            },
+            {
+              "id": 5,
+              "name": "Graycat"
             }
-          ]<br>
+          ] <br>
 
             Incorrecto:
             Status: 404
             JSON{
-                "Mensaje": "No Se Encontraron generos"
+                "Mensaje": "No Se Encontraron razas"
             } <br>
 
             Error:
@@ -75,7 +87,7 @@
     </tr>
 </table>
 <hr>
-<h3>Requerimiento 2 Documentación Del ENDPOINT generos
+<h3>Requerimiento 2 Documentación Del ENDPOINT razas
 
 </h3>
 <hr>
@@ -86,17 +98,17 @@
     </tr>
     <tr>
         <td>NOMBRE DEL SERVICIO</td>
-        <td>Crear un genero</td>
+        <td>Crear una raza</td>
     </tr>
     <tr>
         <td>URL</td>
-        <td>/genders
+        <td>/races
 
         </td>
     </tr>
     <tr>
         <td>DESCRIPCIÓN</td>
-        <td>Permite crear un genero con la información para su exposición</td>
+        <td>Permite crear una raza con la información para su exposición</td>
     </tr>
     <tr>
         <td>VERBO HTTP</td>
@@ -122,13 +134,13 @@
             Correcto:
             Status: 200
             JSON{
-                "message": "genero creado con éxito"
+                "message": "raza creada con éxito"
               } <br>
 
             Incorrecto:
             Status: 404
             JSON{
-                "Mensaje": "No Se Pudo Crear el genero"
+                "Mensaje": "No Se Pudo Crear la raza"
             } <br>
 
             Error:

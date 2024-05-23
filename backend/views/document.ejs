@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación | Mascotas</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        * {
+            font-family: sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+        }
+
+        td,
+        th {
+            border: 1px solid #e0e0e0;
+            padding: 8px;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #e0e0e0;
+        }
+
+        td:first-child {
+            font-weight: bold;
+            width: 30%;
+            background-color: #f5f5f5;
+        }
+
+        td:nth-child(2) {
+            width: 70%;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include("auth.document.ejs") %>
+        <%- include("categories.document.ejs") %>
+            <%- include("genders.document.ejs") %>
+                <%- include("pets.document.ejs") %>
+                    <%- include("races.document.ejs") %>
+                        <%- include("users.document.ejs") %>
+</body>
+
+</html>

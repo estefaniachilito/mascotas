@@ -1,0 +1,332 @@
+<h1>Documentación Módulo mascotas</h1>
+<hr>
+<h3>Requerimiento 1 Documentación Del ENDPOINT mascotas</h3>
+<hr>
+<table>
+    <tr>
+        <td>NUMERO</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>NOMBRE DEL SERVICIO</td>
+        <td>Mostrar mascotas</td>
+    </tr>
+    <tr>
+        <td>URL</td>
+        <td>/mascotas</td>
+    </tr>
+    <tr>
+        <td>DESCRIPCIÓN</td>
+        <td>Mostrar todos los mascotas guardadas en la base de datos</td>
+    </tr>
+    <tr>
+        <td>VERBO HTTP</td>
+        <td>GET</td>
+    </tr>
+    <tr>
+        <td>HEADER</td>
+        <td>token: "token"</td>
+    </tr>
+    <tr>
+        <td>PETICIÓN body</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>RESPUESTA JSON</td>
+        <td>
+            Correcto:
+            Status: 200
+            JSON[
+            {
+              "id": 13,
+              "pet_name": "Karsten",
+              "race_name": "Bulldog",
+              "photo": "photo-sm-1.svg"
+            },
+            {
+              "id": 14,
+              "pet_name": "Alban",
+              "race_name": "Corgi",
+              "photo": "photo-sm-2.svg"
+            }
+          ] <br>
+
+            Incorrecto:
+            Status: 404
+            JSON{
+                "mensaje":"No se encontraron mascotas"
+            } <br>
+
+            Error:
+            Status: 500
+            JSON{
+                "Mensaje": "error"
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>Autor</td>
+        <td>Estefania Chilito Zuñiga</td>
+    </tr>
+</table>
+<hr>
+<h3>Requerimiento 2 Documentación Del ENDPOINT mascotas</h3>
+<hr>
+<table>
+    <tr>
+        <td>NUMERO</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>NOMBRE DEL SERVICIO</td>
+        <td>Crear mascotas</td>
+    </tr>
+    <tr>
+        <td>URL</td>
+        <td>/mascotas</td>
+    </tr>
+    <tr>
+        <td>DESCRIPCIÓN</td>
+        <td>Permite crear un mascotas proporcionando los datos requeridos</td>
+    </tr>
+    <tr>
+        <td>VERBO HTTP</td>
+        <td>POST</td>
+    </tr>
+    <tr>
+        <td>HEADER</td>
+        <td>
+            token: "token" <br>
+            Content-Type: "multipart/form-data"
+        </td>
+    </tr>
+    <tr>
+        <td>PETICIÓN body</td>
+        <td>
+            JSON:{ 
+                "pet_name": "Kira",
+                "race_id": 1,
+                "photo": (binary),
+                "category_id": 1,
+                "gender_id": 1
+                }
+        </td>
+    </tr>
+    <tr>
+        <td>RESPUESTA JSON</td>
+        <td>
+            Correcto:
+            Status: 200
+            JSON{
+                "mensaje": "mascotas creada con exito"
+            } <br>
+
+            Incorrecto:
+            Status: 404
+            JSON{
+                "mensaje": "No se pudo crear la mascotas"
+            } <br>
+
+            Error:
+            Status: 500
+            JSON{
+                "Mensaje": "error"
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>Autor</td>
+        <td>Estefania Chilito Zuñiga</td>
+    </tr>
+</table>
+<hr>
+<h3>Requerimiento 3 Documentación Del ENDPOINT mascotas</h3>
+<hr>
+<table>
+    <tr>
+        <td>NUMERO</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>NOMBRE DEL SERVICIO</td>
+        <td>Actualizar mascotas</td>
+    </tr>
+    <tr>
+        <td>URL</td>
+        <td>/mascotas/:id</td>
+    </tr>
+    <tr>
+        <td>DESCRIPCIÓN</td>
+        <td>Actualizar un mascotas mediante su ID</td>
+    </tr>
+    <tr>
+        <td>VERBO HTTP</td>
+        <td>PUT</td>
+    </tr>
+    <tr>
+        <td>HEADER</td>
+        <td>token: "token"</td>
+    </tr>
+    <tr>
+        <td>PETICIÓN body</td>
+        <td>
+            JSON{
+                "pet_name": "karsten2"
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>RESPUESTA JSON</td>
+        <td>
+            Correcto:
+            Status: 200
+            JSON{
+                "mensaje": "mascota actualizada con exito"
+            } <br>
+
+            Incorrecto:
+            Status: 404
+            JSON{
+                "mensaje": "No se pudo actualizar la mascotas"
+            } <br>
+
+            Error:
+            Status: 500
+            JSON{
+                "Mensaje": "error"
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>Autor</td>
+        <td>Estefania Chilito Zuñiga</td>
+    </tr>
+</table>
+<hr>
+<h3>Requerimiento 4 Documentación Del ENDPOINT mascotas</h3>
+<hr>
+<table>
+    <tr>
+        <td>NUMERO</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>NOMBRE DEL SERVICIO</td>
+        <td>Mostrar mascotas por su ID</td>
+    </tr>
+    <tr>
+        <td>URL</td>
+        <td>/mascotas/:id</td>
+    </tr>
+    <tr>
+        <td>DESCRIPCIÓN</td>
+        <td>Muestra mascotas por medio de su ID</td>
+    </tr>
+    <tr>
+        <td>VERBO HTTP</td>
+        <td>GET</td>
+    </tr>
+    <tr>
+        <td>
+            token: "token" <br>
+            Content-Type: "multipart/form-data"
+        </td>
+    </tr>
+    <tr>
+        <td>PETICIÓN body</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>RESPUESTA JSON</td>
+        <td>
+            Correcto:
+            Status: 200
+            JSON{
+                "id": 13,
+                "pet_name": "Karsten2",
+                "race_id": 2,
+                "category_id": 1,
+                "photo": "photo-sm-1.svg",
+                "gender_id": 2,
+                "user_id": null,
+                "race_name": "Bulldog",
+                "category_name": "Dogs",
+                "gender_name": "Macho"
+              } <br>
+          
+            Incorrecto:
+            Status: 404
+            JSON{
+                "mensaje":"mascota no encontrada"
+            } <br>
+ 
+            Error:
+            Status: 500
+            JSON{
+                "Mensaje": "error"
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>Autor</td>
+        <td>Estefania Chilito Zuñiga</td>
+    </tr>
+</table>
+<hr>
+<h3>Requerimiento 5 Documentación Del ENDPOINT mascotas</h3>
+<hr>
+<table>
+    <tr>
+        <td>NUMERO</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>NOMBRE DEL SERVICIO</td>
+        <td>Eliminar mascotas</td>
+    </tr>
+    <tr>
+        <td>URL</td>
+        <td>/mascotas/:id</td>
+    </tr>
+    <tr>
+        <td>DESCRIPCIÓN</td>
+        <td>Elimina mascotas por medio de su ID</td>
+    </tr>
+    <tr>
+        <td>VERBO HTTP</td>
+        <td>DELETE</td>
+    </tr>
+    <tr>
+        <td>HEADER</td>
+        <td>token: "token"</td>
+    </tr>
+    <tr>
+        <td>PETICIÓN body</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>RESPUESTA JSON</td>
+        <td>
+            Correcto:
+            Status: 200
+            JSON{
+                "mensaje": "mascota eliminada con exito"
+            } <br>
+            Incorrecto:
+            Status: 404
+            JSON{
+                "mensaje": "No se puedo eliminar la mascota"
+            } <br>
+
+            Error:
+            Status: 500
+            JSON{
+                "Mensaje": "error"
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>Autor</td>
+        <td>Estefania Chilito Zuñiga</td>
+    </tr>
+</table>

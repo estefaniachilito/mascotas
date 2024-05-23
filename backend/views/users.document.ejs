@@ -1,0 +1,76 @@
+<h1>Documentación Módulo usuarios
+
+</h1>
+<hr>
+<h3>Requerimiento 1 Documentación Del ENDPOINT usuarios
+
+</h3>
+<hr>
+<table>
+    <tr>
+        <td>NUMERO</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>NOMBRE DEL SERVICIO</td>
+        <td>crear usuarios
+
+        </td>
+    </tr>
+    <tr>
+        <td>URL</td>
+        <td>/usuarios
+
+        </td>
+    </tr>
+    <tr>
+        <td>DESCRIPCIÓN</td>
+        <td>Permite crear un usuario en la base de datos</td>
+    </tr>
+    <tr>
+        <td>VERBO HTTP</td>
+        <td>POST</td>
+    </tr>
+    <tr>
+        <td>HEADER</td>
+        <td>token: "token"</td>
+    </tr>
+    <tr>
+        <td>PETICIÓN body</td>
+        <td>
+            JSON:{ 
+
+                "fullname": "Estefani",
+                "email": "estefania1@gmail.com",
+                "password":"111111"
+                
+              }
+        </td>
+    </tr>
+    <tr>
+        <td>RESPUESTA JSON</td>
+        <td>
+            Correcto:
+            Status: 200
+            JSON{
+                "mensaje": "usuario creado con exito"
+            }<br>
+
+            Incorrecto:
+            Status: 404
+            JSON{
+                "Mensaje": "No se pudo crear el usuario"
+            } <br>
+
+            Error:
+            Status: 500
+            JSON{
+                "Mensaje": "error"
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>Autor</td>
+        <td>Estefania Chilito Zuñiga</td>
+    </tr>
+</table>

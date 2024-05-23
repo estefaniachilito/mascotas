@@ -1,11 +1,16 @@
 import { pool } from "../database/conexion.js";
 import jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
+
+const rounds = 10;
 
 export const register = async (req, res) => {
     try {
         const { fullname, email, password } = req.body
 
-        const [ resultado ] = await pool.query("insert into users(fullname, email, password) values (?, ?, ?)", [fullname, email, password])
+        const hashPassword = await bcrypt.hash(password, rounds)
+
+        const [resultado] = await pool.query("insert into users(fullname, email, password) values (?, ?, ?)", [fullname, email, hashPassword])
 
         if (resultado.affectedRows > 0) {
             return res.status(200).json({
@@ -27,21 +32,28 @@ export const register = async (req, res) => {
 export const login = async (req, res, next) => {
     try {
         const { email, password } = req.body
-        
-        const [ resultado ] = await pool.query('select * from users where email=? and password=?', [email, password])
+
+        const [resultado] = await pool.query('select * from users where email=?', [email])
 
         if (resultado.length > 0) {
-            const token = jwt.sign({ resultado }, "clavesecreta", {expiresIn: "24h"})
-            return res.status(200).json({
-                resultado,
-                token
-            })
+            const user = resultado[0]
+            const match = await bcrypt.compare(password, user.password)
+            if (match) {
+                const token = jwt.sign({ resultado }, "clavesecreta", { expiresIn: "24h" })
+                return res.status(200).json({
+                    resultado,
+                    token
+                })
+            } else {
+                return res.status(404).json({
+                    "mensaje": "Usuario no encontrado"
+                })
+            }
         } else {
             return res.status(404).json({
                 "mensaje": "Usuario no encontrado"
             })
         }
-
     } catch (error) {
         res.status(500).json({
             "mensaje": error.message
