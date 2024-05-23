@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import axiosClient from "../utils/axiosClient";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -10,8 +11,9 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault()
     try {
-      const response = await axios.post('http://localhost:3000/login', { email, password });
-      if (response.status==200) {
+      const response = await axiosClient.post('/login', { email, password });
+      if (response.status == 200) {
+        localStorage.setItem('token', response.data.token);
         navigate('/inicio');
       } else {
         alert('Error al iniciar sesión');
@@ -24,8 +26,8 @@ const Login = () => {
 
   return (
     <div className='w-full h-screen flex justify-center items-center'>
-      <div 
-        style={{ backgroundImage: "url('/bg-login.svg')", width: '400px', height: '785px', backgroundRepeat: 'no-repeat' }} 
+      <div
+        style={{ backgroundImage: "url('/bg-login.svg')", width: '400px', height: '785px', backgroundRepeat: 'no-repeat' }}
         className='flex justify-center items-end pb-10'
       >
         <form onSubmit={handleLogin} className='w-full flex flex-col gap-3 px-10'>

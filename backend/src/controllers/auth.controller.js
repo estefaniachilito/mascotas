@@ -53,13 +53,13 @@ export const validarToken = async (req, res, next) => {
     try {
         const token = req.headers['token']
         if (!token) {
-            return res.status(404).json({
+            return res.status(401).json({
                 "mensaje": "El token es requerido"
             })
         } else {
-            jwt.verify(token, process.env.AUTH_SECRET, (error) => {
+            jwt.verify(token, "clavesecreta", (error) => {
                 if (error) {
-                    return res.status(404).json({
+                    return res.status(401).json({
                         "mensaje": "El token es incorrecto"
                     })
                 } else {

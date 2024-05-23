@@ -1,14 +1,16 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import axiosClient from '../utils/axiosClient'
 
 function ConsultPets() {
     const { id } = useParams()
     const [pet, setPet] = useState({})
     useEffect(() => {
         const getPet = async () => {
-            const response = await axios.get(`http://localhost:3000/mascotas/${id}`)
+            const response = await axiosClient.get(`/mascotas/${id}`)
             if (response.status == 200) {
+                console.log(response.data);
                 setPet(response.data)
             }
         }
@@ -28,35 +30,35 @@ function ConsultPets() {
                     <img src={`http://localhost:3000/public/img/${pet.photo}`} alt="" className='w-[150px] h-[150px] rounded-full border border-blue-500' />
                     <div className='flex flex-col gap-3 w-full'>
                         <div className='w-full flex flex-row'>
-                            <div className='w-[30%] px-5 py-3 bg-sky-100'>
+                            <div className='w-[30%] px-5 py-3 bg-[#8090ac] rounded-l-lg'>
                                 <p>Nombre:</p>
                             </div>
-                            <div className='w-[70%] px-5 py-3 bg-gray-200'>
-                                <p>prueba</p>
+                            <div className='w-[70%] px-5 py-3 bg-[#abb5c7] rounded-r-lg'>
+                                <p>{pet.pet_name}</p>
                             </div>
                         </div>
                         <div className='w-full flex flex-row rounded'>
-                            <div className='w-[30%] px-5 py-3 bg-sky-100'>
+                            <div className='w-[30%] px-5 py-3 bg-[#8090ac] rounded-l-lg'>
                                 <p>Raza:</p>
                             </div>
-                            <div className='w-[70%] px-5 py-3 bg-gray-200'>
-                                <p>prueba</p>
+                            <div className='w-[70%] px-5 py-3 bg-[#abb5c7] rounded-r-lg'>
+                                <p>{pet.race_name}</p>
                             </div>
                         </div>
                         <div className='w-full flex flex-row rounded'>
-                            <div className='w-[30%] px-5 py-3 bg-sky-100'>
+                            <div className='w-[30%] px-5 py-3 bg-[#8090ac] rounded-l-lg'>
                                 <p>Categoría:</p>
                             </div>
-                            <div className='w-[70%] px-5 py-3 bg-gray-200'>
-                                <p>prueba</p>
+                            <div className='w-[70%] px-5 py-3 bg-[#abb5c7] rounded-r-lg'>
+                                <p>{pet.category_name}</p>
                             </div>
                         </div>
                         <div className='w-full flex flex-row rounded'>
-                            <div className='w-[30%] px-5 py-3 bg-sky-100'>
+                            <div className='w-[30%] px-5 py-3 bg-[#8090ac] rounded-l-lg'>
                                 <p>Genero:</p>
                             </div>
-                            <div className='w-[70%] px-5 py-3 bg-gray-200'>
-                                <p>prueba</p>
+                            <div className='w-[70%] px-5 py-3 bg-[#abb5c7] rounded-r-lg'>
+                                <p>{pet.gender_name}</p>
                             </div>
                         </div>
 

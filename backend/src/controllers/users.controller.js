@@ -15,7 +15,7 @@ export const getUsers = async (req, res) => {
 export const setUser = async (req, res) => {
     try {
         const { fullname, email, password } = req.body;
-        const [ result ] = await pool.query('INSERT INTO users SET fullname=?, email=?, password=?', [fullname, email, password]);
+        const [ result ] = await pool.query('INSERT INTO users(fullname, email, password) VALUES (?, ?, ?)', [fullname, email, password]);
 
         if (result.affectedRows > 0) {
             return res.status(201).json({ message: 'Usuario creado con éxito' });

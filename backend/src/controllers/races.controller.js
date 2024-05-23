@@ -15,7 +15,7 @@ export const getRaces = async (req, res) => {
 export const setRaces = async (req, res) => {
     try {
         const { name} = req.body;
-        const [ result ] = await pool.query('INSERT INTO races SET name=?', [name]);
+        const [ result ] = await pool.query('INSERT INTO races(name) values (?)', [name]);
 
         if (result.affectedRows > 0) {
             return res.status(201).json({ message: 'raza creada con éxito' });

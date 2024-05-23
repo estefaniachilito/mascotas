@@ -1,10 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axiosClient from '../utils/axiosClient';
 
-function CreatePets() {
+function EditPet() {
     const navigate = useNavigate()
     const [races, setRaces] = useState([])
     const [categories, setCategories] = useState([])
@@ -15,6 +15,19 @@ function CreatePets() {
     const category_id = useRef(null)
     const photo = useRef(null)
     const gender_id = useRef(null)
+
+    const { id } = useParams()
+    const [pet, setPet] = useState({})
+    useEffect(() => {
+        const getPet = async () => {
+            const response = await axiosClient.get(`/mascotas/${id}`)
+            if (response.status == 200) {
+                setPet(response.data)
+            }
+        }
+
+        getPet()
+    }, [])
 
     useEffect(() => {
         const getData = async () => {
@@ -41,11 +54,11 @@ function CreatePets() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            if(confirm("¿Estás seguro que quierea crear la mascota?")){
+            if(confirm("¿Estás seguro que quierea modificar la mascota?")){
                 const formData = new FormData()
                 formData.append('pet_name', name.current.value)
                 formData.append('race_id', race_id.current.value)
-                formData.append('photo', photo.current.files[0])
+                formData.append('photo', photo.current.files[0] || null)
                 formData.append('category_id', category_id.current.value)
                 formData.append('gender_id', gender_id.current.value)
 
@@ -56,8 +69,8 @@ function CreatePets() {
                 //     category_id: parseInt(category_id.current.value),
                 //     gender_id: parseInt(gender_id.current.value)
                 // }
-                const response = await axiosClient.post("http://localhost:3000/mascotas", formData, {})
-                if(response && response.status == 201){
+                const response = await axiosClient.put(`/mascotas/${id}`, formData, {})
+                if(response && response.status == 200){
                     alert("Mascota creada correctamente")
                     navigate("/inicio")
                 } else{8
@@ -79,16 +92,16 @@ function CreatePets() {
                     </div>
                 </div>
                 <div className='w-full flex justify-center mt-8'>
-                    <img src="/photo-lg-0.svg" alt="" />
+                    <img src={`http://localhost:3000/public/img/${pet.photo}`} alt="" className='w-[150px] h-[150px] rounded-full border border-blue-500' />
                 </div>
                 <div>
                     <form className='w-full flex flex-col px-6 mt-14' onSubmit={handleSubmit} encType='multipart/form-data'>
-                        <input className='bg-white bg-opacity-60 rounded-full mb-6 px-4 py-4' type="text" name='pet_name' placeholder='Nombre' ref={name} />
+                        <input className='bg-white bg-opacity-60 rounded-full mb-6 px-4 py-4' type="text" name='pet_name' placeholder='Nombre' ref={name} defaultValue={pet.pet_name} />
                         <select ref={race_id} className='bg-white bg-opacity-60 rounded-full mb-6 px-4 py-4'>
                             <option value="" >Seleccione raza</option>
                             {
                                 races.map(r => (
-                                    <option value={r.id} key={r.id}>{r.name}</option>
+                                    <option value={r.id} key={r.id} selected={r.name == pet.race_name ? true : false}>{r.name}</option>
                                 ))
                             }
                         </select>
@@ -96,7 +109,7 @@ function CreatePets() {
                             <option value="0" >Seleccione categoría</option>
                             {
                                 categories.map(c => (
-                                    <option value={c.id} key={c.id}>{c.name}</option>
+                                    <option value={c.id} key={c.id} selected={c.name == pet.category_name ? true : false}>{c.name}</option>
                                 ))
                             }
                         </select>
@@ -105,7 +118,7 @@ function CreatePets() {
                             <option value="gender">Seleccione género</option>
                             {
                                 genders.map(g => (
-                                    <option value={g.id} key={g.id}>{g.name}</option>
+                                    <option value={g.id} key={g.id} selected={g.name == pet.gender_name ? true : false}>{g.name}</option>
                                 ))
                             }
                         </select>
@@ -121,4 +134,4 @@ function CreatePets() {
 };
 
 
-export default CreatePets
+export default EditPet

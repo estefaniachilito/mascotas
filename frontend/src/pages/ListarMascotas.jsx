@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom'
+import axiosClient from '../utils/axiosClient';
 
 const TraerMascotas = () => {
     const [mascotas, setMascotas] = useState([]);
     const navigate = useNavigate()
     const getMascotas = async () => {
         try {
-            const response = await axios.get("http://localhost:3000/mascotas");
+            const response = await axiosClient.get("http://localhost:3000/mascotas");
             if (response.status === 200) {
                 setMascotas(response.data);
             }
@@ -20,13 +20,26 @@ const TraerMascotas = () => {
         getMascotas();
     }, []);
 
+
+    const handleDeletePet = async (id) => {
+        try {
+            if (confirm('¿Estás seguro de eliminar esta mascota?')) {
+                await axiosClient.delete(`/mascotas/${id}`);
+                alert('Mascota eliminada correctamente');
+                getMascotas();
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return (
         <div className='w-full h-screen flex justify-center items-center'>
             <div style={{ backgroundImage: "url('/bg.svg')", width: '400px', height: '100vh', backgroundRepeat: 'no-repeat' }}>
                 <div className='w-full flex justify-between px-10 py-6 items-center'>
                     <h1 className='text-white w-full text-center'>Administrar Mascotas</h1>
                     <div className='w-[10%]'>
-                        <Link to="/"><img src="/btn-close.svg" alt="" /></Link>
+                        <Link to="/logout"><img src="/btn-close.svg" alt="" /></Link>
                     </div>
                 </div>
                 <div className='w-full flex justify-center items-center'>
@@ -47,10 +60,13 @@ const TraerMascotas = () => {
                                             </div>
                                         </div>
                                         <div className='flex space-x-2'>
-                                            <button onClick={() => {navigate(`/consult/${mascota.id}`)}}><img src="/btn-show.svg" alt="Show" /></button>
-                                            
-                                            <img src="/btn-edit.svg" alt="Edit" />
-                                            <img src="/btn-delete.svg" alt="Delete" />
+                                            <button onClick={() => { navigate(`/consult/${mascota.id}`) }}><img src="/btn-show.svg" alt="Show" /></button>
+                                            <button onClick={() => { navigate(`/edit/${mascota.id}`)  }}>
+                                                <img src="/btn-edit.svg" alt="Edit" />
+                                            </button>
+                                            <button onClick={() => { handleDeletePet(mascota.id) }}>
+                                                <img src="/btn-delete.svg" alt="Delete" />
+                                            </button>
                                         </div>
                                     </div>
 

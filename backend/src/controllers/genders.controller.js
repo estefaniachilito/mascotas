@@ -15,7 +15,7 @@ export const getGenders = async (req, res) => {
 export const setGenders = async (req, res) => {
     try {
         const { name} = req.body;
-        const [ result ] = await pool.query('INSERT INTO genders SET name=?', [name]);
+        const [ result ] = await pool.query('INSERT INTO genders(name) values (?)', [name]);
 
         if (result.affectedRows > 0) {
             return res.status(201).json({ message: 'genero creado con éxito' });

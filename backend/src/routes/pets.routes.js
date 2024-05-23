@@ -7,7 +7,7 @@ const router = Router()
 router.get('/mascotas', getPets)
 router.post('/mascotas',cargarImagem, setPets)
 router.get('/mascotas/:id', getPetsById)
-router.put('/mascotas/:id', updatePets)
+router.put('/mascotas/:id', cargarImagem, updatePets)
 router.delete('/mascotas/:id', deletePets)
 
 
