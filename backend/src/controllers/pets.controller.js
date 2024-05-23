@@ -1,9 +1,23 @@
 import { pool } from "../database/conexion.js";
+import multer from "multer"
+
+const storage= multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/img')
+    },
+    filename: function (req, file, cb){
+        cb (null, file.originalname);
+    }
+})
+const upload = multer({storage: storage})
+
+export const cargarImagem = upload.single('photo')
 
 export const getPets = async (req, res) => {
     try {
         const query = `
             SELECT 
+                pets.id AS id,
                 pets.pet_name,
                 races.name AS race_name,
                 pets.photo
@@ -25,7 +39,8 @@ export const getPets = async (req, res) => {
 
 export const setPets = async (req, res) => {
     try {
-        const { pet_name, race_id, category_id, photo, gender_id, user_id } = req.body;
+        const { pet_name, race_id, category_id, gender_id, user_id } = req.body;
+        const photo = req.file.originalname;
         const [ result ] = await pool.query('INSERT INTO pets (pet_name, race_id, category_id, photo, gender_id, user_id) values (?, ?, ?, ?, ?, ?)', [pet_name, race_id, category_id, photo || null, gender_id, user_id || null]);
 
         if (result.affectedRows > 0) {

@@ -11,7 +11,7 @@ function App() {
       <Route path='/' Component={Login} />
       <Route path='/inicio' Component={ListarMascotas} />
       <Route path='/create' Component={CreatePets} />
-      <Route path='/consult' Component={ConsultPets}/>
+      <Route path='/consult/:id' Component={ConsultPets}/>
     </Routes>
   )
 }

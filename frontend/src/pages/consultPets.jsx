@@ -1,6 +1,20 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 function ConsultPets() {
+    const { id } = useParams()
+    const [pet, setPet] = useState({})
+    useEffect(() => {
+        const getPet = async () => {
+            const response = await axios.get(`http://localhost:3000/mascotas/${id}`)
+            if (response.status == 200) {
+                setPet(response.data)
+            }
+        }
+
+        getPet()
+    }, [])
     return (
         <div className='w-full h-screen flex justify-center items-center'>
             <div style={{ backgroundImage: "url('/bg.svg')", width: '400px', height: '100vh', backgroundRepeat: 'no-repeat' }}>
@@ -10,8 +24,43 @@ function ConsultPets() {
                         <Link to="/inicio"><img src="/btn-close.svg" alt="" /></Link>
                     </div>
                 </div>
-                <div className='w-full flex justify-center mt-8'>
-                    <img src="/photo-lg-0.svg" alt="" />
+                <div className='w-full flex justify-center mt-8 px-5 flex-col gap-3 items-center'>
+                    <img src={`http://localhost:3000/public/img/${pet.photo}`} alt="" className='w-[150px] h-[150px] rounded-full border border-blue-500' />
+                    <div className='flex flex-col gap-3 w-full'>
+                        <div className='w-full flex flex-row'>
+                            <div className='w-[30%] px-5 py-3 bg-sky-100'>
+                                <p>Nombre:</p>
+                            </div>
+                            <div className='w-[70%] px-5 py-3 bg-gray-200'>
+                                <p>prueba</p>
+                            </div>
+                        </div>
+                        <div className='w-full flex flex-row rounded'>
+                            <div className='w-[30%] px-5 py-3 bg-sky-100'>
+                                <p>Raza:</p>
+                            </div>
+                            <div className='w-[70%] px-5 py-3 bg-gray-200'>
+                                <p>prueba</p>
+                            </div>
+                        </div>
+                        <div className='w-full flex flex-row rounded'>
+                            <div className='w-[30%] px-5 py-3 bg-sky-100'>
+                                <p>Categoría:</p>
+                            </div>
+                            <div className='w-[70%] px-5 py-3 bg-gray-200'>
+                                <p>prueba</p>
+                            </div>
+                        </div>
+                        <div className='w-full flex flex-row rounded'>
+                            <div className='w-[30%] px-5 py-3 bg-sky-100'>
+                                <p>Genero:</p>
+                            </div>
+                            <div className='w-[70%] px-5 py-3 bg-gray-200'>
+                                <p>prueba</p>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>

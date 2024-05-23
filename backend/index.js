@@ -13,6 +13,7 @@ server.use(cors())
 server.use(body_parser.json())
 server.use(body_parser.urlencoded({ extended: false }))
 
+server.use('/public', express.static('./public'))
 server.use(userRouter)
 server.use(authRoutes)
 server.use(petsRoutes)

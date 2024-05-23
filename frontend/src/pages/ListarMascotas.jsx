@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const TraerMascotas = () => {
     const [mascotas, setMascotas] = useState([]);
-
+    const navigate = useNavigate()
     const getMascotas = async () => {
         try {
             const response = await axios.get("http://localhost:3000/mascotas");
@@ -26,29 +26,34 @@ const TraerMascotas = () => {
                 <div className='w-full flex justify-between px-10 py-6 items-center'>
                     <h1 className='text-white w-full text-center'>Administrar Mascotas</h1>
                     <div className='w-[10%]'>
-                        <Link to="/"><img src="/btn-close.svg" alt="" /></Link>             
+                        <Link to="/"><img src="/btn-close.svg" alt="" /></Link>
                     </div>
                 </div>
                 <div className='w-full flex justify-center items-center'>
-                   <Link to="/create"><img src="/btn-add.svg" alt=""/></Link>
+                    <Link to="/create"><img src="/btn-add.svg" alt="" /></Link>
                 </div>
-                <div className='px-4 py-4'>
+                <div className='px-4 py-4 h-full overflow-y-scroll'>
                     {mascotas.length > 0 ? (
                         <ul className='space-y-4'>
                             {mascotas.map((mascota, index) => (
                                 <li key={index} className='text-blue-900'>
+
                                     <div className='flex justify-between items-center py-4 px-3 bg-white bg-opacity-60 rounded-xl'>
-                                        <span>{mascota.photo}</span>
-                                        <div className='flex flex-col'>
-                                            <span>{mascota.pet_name}</span>
-                                            <span className='text-sm text-blue-900'>{mascota.race_name}</span>
+                                        <div className='flex flex-row items-center gap-3'>
+                                            <img className='w-12 h-12 rounded-full border border-blue-700' src={`http://localhost:3000/public/img/${mascota.photo}`} alt="" />
+                                            <div className='flex flex-col'>
+                                                <span>{mascota.pet_name}</span>
+                                                <span className='text-sm text-blue-900'>{mascota.race_name}</span>
+                                            </div>
                                         </div>
                                         <div className='flex space-x-2'>
-                                            <img src="/btn-show.svg" alt="Show" />
+                                            <button onClick={() => {navigate(`/consult/${mascota.id}`)}}><img src="/btn-show.svg" alt="Show" /></button>
+                                            
                                             <img src="/btn-edit.svg" alt="Edit" />
                                             <img src="/btn-delete.svg" alt="Delete" />
                                         </div>
                                     </div>
+
                                 </li>
                             ))}
                         </ul>

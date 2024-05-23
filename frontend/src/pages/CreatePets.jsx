@@ -12,6 +12,7 @@ function CreatePets() {
     const name = useRef(null)
     const race_id = useRef(null)
     const category_id = useRef(null)
+    const photo = useRef(null)
     const gender_id = useRef(null)
 
     useEffect(() => {
@@ -40,19 +41,21 @@ function CreatePets() {
         e.preventDefault()
         try {
             if(confirm("¿Estás seguro que quierea crear la mascota?")){
-                // const formData = new FormData()
-                // formData.append('pet_name', name.current.value)
-                // formData.append('race_id', race_id.current.value)
-                // formData.append('category_id', category_id.current.value)
-                // formData.append('gender_id', gender_id.current.value)
+                const formData = new FormData()
+                formData.append('pet_name', name.current.value)
+                formData.append('race_id', race_id.current.value)
+                formData.append('photo', photo.current.files[0])
+                formData.append('category_id', category_id.current.value)
+                formData.append('gender_id', gender_id.current.value)
 
-                const data = {
-                    pet_name: name.current.value,
-                    race_id: parseInt(race_id.current.value),
-                    category_id: parseInt(category_id.current.value),
-                    gender_id: parseInt(gender_id.current.value)
-                }
-                const response = await axios.post("http://localhost:3000/mascotas", data, {})
+                // const data = {
+                //     pet_name: name.current.value,
+                //     race_id: parseInt(race_id.current.value),
+                //     photo: photo.current.files[0],
+                //     category_id: parseInt(category_id.current.value),
+                //     gender_id: parseInt(gender_id.current.value)
+                // }
+                const response = await axios.post("http://localhost:3000/mascotas", formData, {})
                 if(response && response.status == 201){
                     alert("Mascota creada correctamente")
                     navigate("/inicio")
@@ -78,7 +81,7 @@ function CreatePets() {
                     <img src="/photo-lg-0.svg" alt="" />
                 </div>
                 <div>
-                    <form className='w-full flex flex-col px-6 mt-14' onSubmit={handleSubmit}>
+                    <form className='w-full flex flex-col px-6 mt-14' onSubmit={handleSubmit} encType='multipart/form-data'>
                         <input className='bg-white bg-opacity-60 rounded-full mb-6 px-4 py-4' type="text" name='pet_name' placeholder='Nombre' ref={name} />
                         <select ref={race_id} className='bg-white bg-opacity-60 rounded-full mb-6 px-4 py-4'>
                             <option value="" >Seleccione raza</option>
@@ -96,6 +99,7 @@ function CreatePets() {
                                 ))
                             }
                         </select>
+                        <input className='bg-white bg-opacity-60 rounded-full mb-6 px-4 py-4' type="file" name='photo' placeholder='Photo' ref={photo} />
                         <select ref={gender_id} className='bg-white bg-opacity-60 rounded-full mb-6 px-4 py-4'>
                             <option value="gender">Seleccione género</option>
                             {
