@@ -38,6 +38,7 @@ const TraerMascotas = () => {
             <div style={{ backgroundImage: "url('/bg.svg')", width: '400px', height: '100vh', backgroundRepeat: 'no-repeat' }}>
                 <div className='w-full flex justify-between px-10 py-6 items-center'>
                     <h1 className='text-white w-full text-center'>Administrar Mascotas</h1>
+                    <Link to="/listpets" className='p-2 bg-white rounded text-sm'>Listar</Link>
                     <div className='w-[10%]'>
                         <Link to="/logout"><img src="/btn-close.svg" alt="" /></Link>
                     </div>

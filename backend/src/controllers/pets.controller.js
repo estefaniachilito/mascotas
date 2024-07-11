@@ -73,10 +73,10 @@ export const getPetsById = async (req, res) => {
 export const updatePets = async (req, res) => {
     try {
         const { id } = req.params;
-        const { pet_name, race_id, category_id, gender_id, user_id} = req.body;
+        const { pet_name, race_id, category_id, gender_id, user_id, municipio_id} = req.body;
         const photo = req.file ? req.file.originalname : null;
         const [ oldPet ] = await pool.query('SELECT * FROM pets WHERE id=?', [id]);
-        const [result] = await pool.query(`UPDATE pets SET pet_name='${pet_name ? pet_name : oldPet[0].pet_name}', race_id=${race_id ? race_id : oldPet[0].race_id}, category_id=${category_id ? category_id : oldPet[0].category_id}, photo='${photo ? photo : oldPet[0].photo}', gender_id=${gender_id ? gender_id : oldPet[0].gender_id} WHERE id=?`, [id]);
+        const [result] = await pool.query(`UPDATE pets SET pet_name='${pet_name ? pet_name : oldPet[0].pet_name}', race_id=${race_id ? race_id : oldPet[0].race_id}, category_id=${category_id ? category_id : oldPet[0].category_id}, photo='${photo ? photo : oldPet[0].photo}', municipio_id=${municipio_id ? municipio_id : oldPet[0].municipio_id}, gender_id=${gender_id ? gender_id : oldPet[0].gender_id} WHERE id=?`, [id]);
 
         if (result.affectedRows > 0) {
             return res.status(200).json({ message: 'mascota actualizada con éxito' });

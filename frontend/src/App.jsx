@@ -7,6 +7,7 @@ import ConsultPets from './pages/consultPets'
 import Logout from './pages/Logout'
 import PrivateRoutes from './utils/PrivateRoutes'
 import EditPet from './pages/EditPet'
+import ListPetsByMunicipio from './pages/ListPetsByMunicipio'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path='/create' Component={CreatePets} />
         <Route path='/consult/:id' Component={ConsultPets}/>
         <Route path='/edit/:id' Component={EditPet}/>
+        <Route path='/listpets' Component={ListPetsByMunicipio} />
       </Route>
     </Routes>
   )
