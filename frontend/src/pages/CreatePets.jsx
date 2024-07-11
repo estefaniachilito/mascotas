@@ -9,12 +9,14 @@ function CreatePets() {
     const [races, setRaces] = useState([])
     const [categories, setCategories] = useState([])
     const [genders, setGenders] = useState([])
+    const [ municipios, setMunicipios ] = useState([])
 
     const name = useRef(null)
     const race_id = useRef(null)
     const category_id = useRef(null)
     const photo = useRef(null)
     const gender_id = useRef(null)
+    const municipio_id = useRef(null)
 
     useEffect(() => {
         const getData = async () => {
@@ -34,6 +36,12 @@ function CreatePets() {
                 }
             })
 
+            await axiosClient.get("http://localhost:3000/municipios").then(response => {
+                if (response.status == 200) {
+                    setMunicipios(response.data)
+                }
+            })
+
         }
         getData()
     }, [])
@@ -48,6 +56,7 @@ function CreatePets() {
                 formData.append('photo', photo.current.files[0])
                 formData.append('category_id', category_id.current.value)
                 formData.append('gender_id', gender_id.current.value)
+                formData.append('municipio_id', municipio_id.current.value)
 
                 // const data = {
                 //     pet_name: name.current.value,
@@ -97,6 +106,14 @@ function CreatePets() {
                             {
                                 categories.map(c => (
                                     <option value={c.id} key={c.id}>{c.name}</option>
+                                ))
+                            }
+                        </select>
+                        <select ref={municipio_id} className='bg-white bg-opacity-60 rounded-full mb-6 px-4 py-4'>
+                            <option value="0" >Seleccione el municipio</option>
+                            {
+                                municipios.map(m => (
+                                    <option value={m.id} key={m.id}>{m.name}</option>
                                 ))
                             }
                         </select>

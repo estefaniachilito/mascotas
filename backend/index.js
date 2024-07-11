@@ -7,6 +7,7 @@ import petsRoutes from './src/routes/pets.routes.js'
 import categoriesRoutes from './src/routes/categories.routes.js'
 import gendersRoutes from './src/routes/genders.routes.js'
 import racesRoutes from './src/routes/races.routes.js'
+import municipiosRoutes from './src/routes/municipios.routes.js'
 import { validarToken } from './src/controllers/auth.controller.js'
 const server = express()
 
@@ -26,6 +27,7 @@ server.use(validarToken, petsRoutes)
 server.use(validarToken, categoriesRoutes)
 server.use(validarToken, gendersRoutes)
 server.use(validarToken, racesRoutes)
+server.use(validarToken, municipiosRoutes)
 
 
 server.listen(3000, () => {
