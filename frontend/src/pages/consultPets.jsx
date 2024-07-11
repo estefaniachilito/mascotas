@@ -61,6 +61,15 @@ function ConsultPets() {
                                 <p>{pet.gender_name}</p>
                             </div>
                         </div>
+                        <div className='w-full flex flex-row rounded'>
+                            <div className='w-[30%] px-5 py-3 bg-[#8090ac] rounded-l-lg'>
+                                <p>Municipio:</p>
+                            </div>
+                            <div className='w-[70%] px-5 py-3 bg-[#abb5c7] rounded-r-lg'>
+                                <p>{pet.municipio_name}</p>
+                            </div>
+                        </div>
+
 
                     </div>
                 </div>
